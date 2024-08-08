@@ -17,12 +17,12 @@ perguntas = [
 ]
 cont_acerto = 0
 
-def func_perguntas(i1=0):
+def func_perguntas(c=0):
     global cont_acerto
-    print(f'\n{list(perguntas[i1].keys())[i1]}: {perguntas[i1]['Pergunta']}')
-    print((f'\n{list(perguntas[i1].keys())[1]}:'))
+    print(f'\n{list(perguntas[c].keys())[c]}: {perguntas[c]['Pergunta']}')
+    print((f'\n{list(perguntas[c].keys())[1]}:'))
     
-    for i, v in enumerate(perguntas[i1]['Opções']):
+    for i, v in enumerate(perguntas[c]['Opções']):
         print(f'{i}) {v}')
     
     resp = input('Escolha uma opção: ')
@@ -32,7 +32,7 @@ def func_perguntas(i1=0):
         print('Você errou!')
         return cont_acerto
 
-    if resp > len(perguntas[i1]['Opções']) or perguntas[i1]['Resposta'] != perguntas[i1]['Opções'][resp]:
+    if resp > len(perguntas[c]['Opções']) or perguntas[c]['Resposta'] != perguntas[c]['Opções'][resp]:
         print('Você errou!')
     else:
         print('Você acertou!')
