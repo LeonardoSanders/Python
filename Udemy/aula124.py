@@ -16,7 +16,6 @@ perguntas = [
     }
 ]
 
-
 cont_acertos = 0
 
 def func_perguntas(c=0):
@@ -25,11 +24,23 @@ def func_perguntas(c=0):
     print(f'\n{list(perguntas[c].keys())[c]}: {perguntas[c]['Pergunta']}')
     print(f'\n{list(perguntas[c].keys())[1]}:')
 
-    for n in range(0, 4):
-        print(f'{n}) {perguntas[c]['Opções'][n]}')
+    for index, valor in enumerate(perguntas[c]['Opções']):
+        print(f'{index}) {valor}')
 
     resp = input('Escolha uma opção: ')
     try:
         resp = int(resp)
+    except:
+        print('Resposta errada!')
+        return cont_acertos
 
-func_perguntas()
+    if resp > len(perguntas[c]['Opções']) or perguntas[c]['Resposta'] != perguntas[c]['Opções'][resp]:
+        print('Você errou!')
+    else:
+        print('Você acertou!')
+        cont_acertos += 1
+
+for c in range(0, 3):
+    func_perguntas(c)
+
+print(f'Você acertou {cont_acertos} perguntas!')
