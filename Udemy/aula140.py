@@ -38,3 +38,11 @@ last_letter_name = [
     for name in names
 ]
 print(last_letter_name)
+
+#Exercício 5: Crie uma lista de números com seus respectivos valores ao quadrado e depois transforme em formato Flat.
+numeros = [[numero, numero ** 2] for numero in range(10)]
+flat = [num_individual
+        for numero in numeros
+        for num_individual in numero]
+print(numeros)
+print(flat)
