@@ -34,3 +34,6 @@ l2 = sorted(lista, key=lambda item: item['sobrenome'])
 
 exibir(l1)
 exibir(l2)
+
+lista.sort(key=lambda item: item['nome'])
+print(*lista, sep='\n')
