@@ -22,15 +22,14 @@ print(*novos_produtos_copy, sep='\n')
 
 # Ordene os produtos por nome decrescente (do maior para menor)
 # Gere produtos_ordenados_por_nome por deep copy (cópia profunda)
-produtos.sort(key=lambda item: item['nome'])
 
-produtos_ordenados_por_nome = deepcopy(produtos)
+produtos_ordenados_por_nome = sorted(deepcopy(produtos), key=lambda item: item['nome'], reverse=True)
 print()
 print(*produtos_ordenados_por_nome, sep='\n')
 
 # Ordene os produtos por preco crescente (do menor para maior)
 # Gere produtos_ordenados_por_preco por deep copy (cópia profunda)
-produtos.sort(key=lambda item: item['preco'])
-produtos_ordenados_por_preco = deepcopy(produtos)
+
+produtos_ordenados_por_preco = sorted(deepcopy(produtos), key=lambda item: item['preco'])
 print()
 print(*produtos_ordenados_por_preco, sep='\n')
