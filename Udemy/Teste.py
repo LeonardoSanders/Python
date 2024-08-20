@@ -20,4 +20,12 @@ produtos = [
     for produto in produtos
 ]
 novos_produtos = deepcopy(produtos)
-print(*novos_produtos, sep='\n')
+#print(*novos_produtos, sep='\n')
+
+produtos.sort(key=lambda item: item['nome'], reverse=True)
+produtos_ordenados_por_nome = deepcopy(produtos)
+#print(*produtos_ordenados_por_nome, sep='\n')
+
+produtos.sort(key=lambda item: item['preco'])
+produtos_ordenados_por_preco = deepcopy(produtos)
+print(*produtos_ordenados_por_preco, sep='\n')
