@@ -6,13 +6,13 @@
 #Decoradores são "Syntax Sugar" - Açúcar Sintático
 
 
-#Abaixo está um exemplo de função decoradora!
+#Abaixo está um exemplo de uso dos decoradores!
 def create_func(func):
     def inner_func(*args):
         for arg in args:
             check_str(arg)
-            result = func(*args)
-            return result
+        result = func(*args)
+        return result
     return inner_func
 
 
