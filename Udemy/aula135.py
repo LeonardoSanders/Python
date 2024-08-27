@@ -22,7 +22,7 @@ print(a1, a2)
 print(b)
 print('-' * 50)
 '''
-No trecho acima, a1 e a2 fazem vão receber 'internamente' a chave e valor do primeiro
+No trecho acima, a1 e a2 vão receber 'internamente' a chave e valor do primeiro
 elemento do dicionário. Ao passo que b recebe uma tupla com chave e valor juntos.
 '''
 
