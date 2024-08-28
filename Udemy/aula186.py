@@ -26,7 +26,12 @@ arquivo.close()
 #A diferença entre esses dois códigos, é que o de baixo irá fechar automaticamente
 #o arquivo, sem a necessidade de usar o .close()
 
-with open(caminho_arquivo, 'w') as arquivo:
-    print('Olá mundo')
-    print('Arquivo vai ser fechado')
 #O código acima é um exemplo de uso do Context Manager
+with open(caminho_arquivo, 'w', encoding='utf8') as arquivo:
+    arquivo.write('Atenção\n')
+    arquivo.write('Linha 1\n')
+    arquivo.write('Linha 2\n')
+
+with open(caminho_arquivo, 'r', encoding='utf8') as arquivo:
+    print(arquivo.read())
+
