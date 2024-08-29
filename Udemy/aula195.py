@@ -74,16 +74,19 @@ tarefas = ler([], CAMINHO_ARQUIVO)
 tarefas_refazer = []
 
 while True:
-    print('Comandos: listar, desfazer, refazer, sair')
+    print('Comandos: listar[1], desfazer[2], refazer[3], clear[4], sair[5]')
     tarefa = input('Digite uma tarefa ou comando: ')
 
     comandos = {
-        'listar': lambda: listar(tarefas),
-        'desfazer': lambda: desfazer(tarefas, tarefas_refazer),
-        'refazer': lambda: refazer(tarefas, tarefas_refazer),
-        'clear': lambda: os.system('clear'),
+        '1': lambda: listar(tarefas),
+        '2': lambda: desfazer(tarefas, tarefas_refazer),
+        '3': lambda: refazer(tarefas, tarefas_refazer),
+        '4': lambda: os.system('clear'),
         'adicionar': lambda: adicionar(tarefa, tarefas),
     }
+    if tarefa == '5':
+        break
     comando = comandos.get(tarefa) if comandos.get(tarefa) is not None else comandos['adicionar']
     comando()
     salvar(tarefas, CAMINHO_ARQUIVO)
+    
