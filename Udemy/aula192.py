@@ -19,33 +19,51 @@ def listar(tarefas):
         print(f'\t{tarefa}')
 
 
+def desfazer(todolist, undolist):
+    try:    
+        tarefa = todolist.pop()
+        print(f'\n{tarefa} removida da lista')
+        undolist.append(tarefa)
+    except (IndexError):
+        print('\nNada a desfazer')
+
+
+def refazer(undolist, todolist):
+    try:
+        print(f'\n{undolist[-1]} adicionada à lista')
+        todolist.append(undolist[-1])
+        undolist.pop()
+    except (IndexError):
+        print('\nNada a refazer')
+
+
+def adicionar(tarefa, todolist):
+    if not tarefa:
+        print('Você não digitou uma tarefa!')
+        return
+    todolist.append(tarefa)
+    print(f'\n{tarefa} adicionado à lista')
+    listar(todolist)
+
+
 to_do_list = []
 undo_list = []
 
 while True:
     print('\nComandos: listar[1], desfazer[2], refazer[3], sair[4]')
-    comandos = input('Digite uma tarefa ou comando: ')
-    if comandos == '1':
-        listar(to_do_list)
-        print()
-        continue
-    elif comandos == '2':
-        try:
-            tarefa = to_do_list.pop()
-            print(f'\n{tarefa} removida da lista')
-            undo_list.append(tarefa)
-        except (IndexError):
-            print('\nNada a desfazer')
-    elif comandos == '3':
-        try:
-            print(f'\n{undo_list[-1]} adicionada à lista')
-            to_do_list.append(undo_list[-1])
-            undo_list.pop()
-        except (IndexError):
-            print('\nNada a refazer')
-    elif comandos == '4':
+    tarefa = input('Digite uma tarefa ou comando: ')
+    
+    comandos = {
+        '1': lambda: listar(to_do_list),
+        '2': lambda: desfazer(to_do_list, undo_list),
+        '3': lambda: refazer(undo_list, to_do_list),
+        '5': lambda: adicionar(tarefa, to_do_list),
+    }
+
+    if tarefa == '4':
         print(f'\nSaindo da Lista de Tarefas...')
         break
-    else:
-        to_do_list.append(comandos)
-        print(f'\n{comandos} adicionado à lista')
+
+    comando = comandos.get(tarefa) if comandos.get(tarefa) is not None else comandos['5']
+    comando()
+    
