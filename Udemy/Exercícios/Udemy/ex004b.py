@@ -2,8 +2,7 @@ def criar_func(func):
     def interna(*args):
         for arg in args:
             checagem_string(arg)
-        result = func(*args)
-        return f'O resulto é: {result}'
+        return f'O resulto é: {func(*args)}'
     return interna
 
 
