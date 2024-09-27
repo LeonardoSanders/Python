@@ -50,20 +50,20 @@ to_do_list = []
 undo_list = []
 
 while True:
-    print('\nComandos: listar[1], desfazer[2], refazer[3], sair[4]')
+    print('\nComandos: listar[1], desfazer[2], refazer[3], sair[0]')
     tarefa = input('Digite uma tarefa ou comando: ')
     
-    comandos = {
-        '1': lambda: listar(to_do_list),
-        '2': lambda: desfazer(to_do_list, undo_list),
-        '3': lambda: refazer(undo_list, to_do_list),
-        '5': lambda: adicionar(tarefa, to_do_list),
-    }
-
     if tarefa == '4':
         print(f'\nSaindo da Lista de Tarefas...')
         break
 
-    comando = comandos.get(tarefa) if comandos.get(tarefa) is not None else comandos['5']
+    comandos = {
+        '1': lambda: listar(to_do_list),
+        '2': lambda: desfazer(to_do_list, undo_list),
+        '3': lambda: refazer(undo_list, to_do_list),
+        '4': lambda: adicionar(tarefa, to_do_list),
+    }
+
+    comando = comandos.get(tarefa) if comandos.get(tarefa) is not None else comandos['4']
     comando()
     
