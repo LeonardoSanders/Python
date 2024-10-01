@@ -2,8 +2,7 @@ def create_func(func):
     def inter(*args):
         for arg in args:
             check_is_str(arg)
-        result = func(*args)
-        return f'O resulto é: {result}'
+        return f'O resulto é: {func(*args)}'
     return inter
 
 @create_func
@@ -15,5 +14,5 @@ def check_is_str(char):
         raise TypeError ('Não é uma string')
     
 
-reverse_str = reverse_string('Léo')
+reverse_str = reverse_string('LEONARDO')
 print(reverse_str)
