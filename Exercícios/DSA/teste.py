@@ -1,14 +1,9 @@
-from functools import reduce
-produtos = [
-    {'nome': 'Banana', 'preco': 3.5},
-    {'nome': 'Maçã', 'preco': 2.0},
-    {'nome': 'Laranja', 'preco': 1.5}
-]
+palavra_certa = 'banana'
+palavra_usuario = ['_', '_', '_', '_', '_', '_']
+letra = input('Digite uma letra: ')
 
-# Filtrar produtos com preço maior que 2 reais
-produtos_caros = filter(lambda p: p['preco'] >= 2, produtos)
+for i, letras in enumerate(palavra_certa):
+    if letras == letra:
+        palavra_usuario[i] = letra
 
-# Calcular o preço total dos produtos caros
-preco_total = reduce(lambda total, p: total + p['preco'], produtos_caros, 0)
-
-print(preco_total)
+print(palavra_usuario)
