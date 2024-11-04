@@ -1,9 +1,4 @@
-palavra_certa = 'banana'
-palavra_usuario = ['_', '_', '_', '_', '_', '_']
-letra = input('Digite uma letra: ')
-
-for i, letras in enumerate(palavra_certa):
-    if letras == letra:
-        palavra_usuario[i] = letra
-
-print(palavra_usuario)
+list1 = [1, 2]
+list2 = [3, 4]
+list3 = list1 + list2
+print(list3)
