@@ -37,7 +37,7 @@ def display_hangman(error):
         ---------
         |       |
         |       O
-        |      \|/
+        |      \\|/
         |       |
         |      / \\
         _
@@ -51,21 +51,22 @@ class Hangman:
         self.palavra = palavra
         self.palavra_usuario = ['_' for letra in self.palavra]
         self.letras_erradas = []
+        self.erros = 0
     
     def advinha_letra(self, letra):
         for i, letras in enumerate(self.palavra):
             if letra == letras:
                 self.palavra_usuario[i] = letra
 
-    def letra_errada(self, letra, erros):
+    def letra_errada(self, letra, ):
         if letra not in self.palavra:
             self.letras_erradas.append(letra)
-            erros += 1
-            return erros
+            self.erros += 1
+            
 
-    def jogo_terminou(self, erros):
-        if erros == 3:
-            print(display_hangman(erros))
+    def jogo_terminou(self,):
+        if self.erros == 3:
+            print(display_hangman(self.erros))
             print('\nVocê perdeu, tente novamente!')
             return True
     
@@ -75,10 +76,10 @@ class Hangman:
             print('\nParabéns, você acertou! A palavra era: ', ''.join(self.palavra_usuario).upper())
             return True
         
-    def imprimir_status(self, erros):
-        print(display_hangman(erros))
+    def imprimir_status(self, ):
+        print(display_hangman(self.erros))
         print('\n', ' '.join(self.palavra_usuario))
-        print(f'\nChances restante: {3 - erros}')
+        print(f'\nChances restante: {3 - self.erros}')
         print('Letras erradas: ', ' '.join(self.letras_erradas))
 
     def verifact_letter(a, letra):
@@ -92,26 +93,22 @@ class Hangman:
             letra = input('\nVocê já digitou essa letra. Digite uma letra: ')
         return letra
 
-    
-
 
 def main():
-    
-    erros = 0 
 
     game = Hangman(palavra_certa)
 
     while True:
-        game.imprimir_status(erros)
+        game.imprimir_status()
 
         tentativa = input('\nDigite uma letra: ')
         letra = game.verifact_letter(tentativa)
         letra = game.letra_repetida(letra)
 
         game.advinha_letra(letra)
-        game.letra_errada(letra, erros)
+        game.letra_errada(letra)
 
-        if game.jogador_venceu() or game.jogo_terminou(erros):
+        if game.jogador_venceu() or game.jogo_terminou():
             break
 
 if __name__ == '__main__':
