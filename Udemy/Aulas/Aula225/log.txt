@@ -1,0 +1,6 @@
+Error: Qualquer coisa (LogFileMixin)
+Sucess: Qualquer coisa (LogFileMixin)
+Error: Qualquer coisa (LogFileMixin)
+Sucess: Qualquer coisa (LogFileMixin)
+Sucess: Galaxy S24 Ultra está ligado (SmartPhone)
+Sucess: Iphone 15 Pro Max está ligado (SmartPhone)
