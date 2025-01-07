@@ -1,6 +1,6 @@
 # O @classmethod é um factory method que permite utilizar uma funçao diretamente
 # pela classe sem a necessidade do 'self', mas é preciso passar o argumento 'cls'
-# no da definiçao do método. PS: É como se fosse uma extensão do molde/Classe
+# na definiçao do método. PS: É como se fosse uma extensão do molde/Classe
 
 class Pessoa:
 
