@@ -7,6 +7,7 @@ class Carro:
         self._cor = cor
         self._ano = ano
         self._ligado = False
+        self._avaliacao = []
         Carro.lista_carros.append(self)
 
     def __str__(self):
@@ -24,14 +25,26 @@ class Carro:
     def listar_carros(cls):
         for carro in cls.lista_carros:
             print(f'O carro {carro._modelo} - {carro._ano} é {carro._cor} e está {carro.ligado}')
-        for ava in Avaliacao.avaliacoes:
-            return f'Revista: {ava.revista} | Nota: {ava.nota}'
+            print(f'Média Avaliação: {carro.media_avaliacoes}')
+    
+
+    def listar_avaliacao(self):
+        for dados in self._avaliacao:
+            print(f'Revista: {dados._revista} | Nota: {dados._nota}')
     
     
     def receber_avaliacao(self, revista, nota):
        avaliacao = Avaliacao(revista, nota)
-       Avaliacao.avaliacoes.append(avaliacao)
+       self._avaliacao.append(avaliacao)
     
+    @property
+    def media_avaliacoes(self):
+        if not self._avaliacao:
+            return 0
+        soma_das_notas = sum(avaliacao._nota for avaliacao in self._avaliacao)
+        qnt_notas = len(self._avaliacao)
+        media_avaliacoes = round(soma_das_notas / qnt_notas, 1)
+        return media_avaliacoes
 
 
 

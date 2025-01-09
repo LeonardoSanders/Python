@@ -9,6 +9,7 @@ c1.receber_avaliacao('AutoSport', 10)
 
 def main():
     Carro.listar_carros()
+    c1.listar_avaliacao()
 
 if __name__ == '__main__':
     main()
