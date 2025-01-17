@@ -1,29 +1,28 @@
 import math
 import os
-import random
-import re
 
-
-def miniMaxSum(arr):
-    list_min = []
-    list_max = []
-    list_num1 = arr.copy()
-    list_num2 = arr.copy()
-
-    for x in range(4):
-        num = max(list_num1)
-        list_max.append(num)
-        list_num1.remove(num)
-
-    for i in range(4):
-        num = min(list_num2)
-        list_min.append(num)
-        list_num2.remove(num)
+class VendingMachine:
+    def __init__(self, num_itens, item_price):
+        self.num_itens = num_itens
+        self.item_price = item_price
+        
+    def buy(self, req_items, money):
+        coins = money
+        
+        if req_items > self.num_itens:
+            raise ValueError('Not enough items in the machine')
+        if req_items <= self.num_itens and coins < (self.item_price * req_items):
+            raise ValueError('Not enough coins')
+        
+        for i in range(req_items):
+            if self.num_itens >= 1 and coins >= self.item_price:
+                self.num_itens -= 1
+                coins -= self.item_price
+            
+             
+        return coins
     
-    return f'{sum(list_min)} {sum(list_max)}'
 
-if __name__ == '__main__':
-
-    arr = list(map(int, input().rstrip().split()))
-
-    print(miniMaxSum(arr))
+vd = VendingMachine(10, 2)
+result = vd.buy(7, 100)
+print(result)

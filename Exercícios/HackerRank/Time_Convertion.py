@@ -13,12 +13,8 @@ def timeConversion(s):
     
     if period == 'PM' and time != '12':
         time = int(time) + 12
-        if time == 24:
-            time = '00'
     elif period == 'AM' and time == '12':
-        time = int(time) - 12
-        if time == 0:
-            time = '00'
+        time = '00'
 
 
     final_time = str(time) + minute
