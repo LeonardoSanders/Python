@@ -1,13 +1,10 @@
 def miniMaxSum(arr):
     mini = arr.copy()
     maxi = arr.copy()
-    result = []
     
     mini.remove(max(mini))
     maxi.remove(min(maxi))
-    
-    result.append(sum(mini))
-    result.append(sum(maxi))
+
     
     return result
 

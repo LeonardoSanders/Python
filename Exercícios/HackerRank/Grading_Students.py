@@ -5,9 +5,8 @@ def gradingStudents(grades):
     for n in numbers:
         if n >= 38:
             for i in range(1, 6):
-                if (n + i) % 5 == 0:
-                    if (n + i) - n < 3:
-                        numbers[cont_num] = n + i
+                if (n + i) % 5 == 0 and (n + i) - n < 3:
+                    numbers[cont_num] = n + i
         cont_num += 1
         
     return numbers

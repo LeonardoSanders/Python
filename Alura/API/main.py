@@ -35,3 +35,13 @@ def get_restaurantes(restaurante: str = Query(None)):
         return {'Restaurante': restaurante,'Cardapio': dados_restaurante}
     else:
         return {'ERRO': f'{response.status_code} - {response.text}'}
+    
+    '''
+    Para executar e acessar os dados do FastAPI é preciso rodar o seguinte comando no terminal:
+    uvicorn main:app --reload
+
+    PS: main refere-se ao nome do arquido que contem o codigo!
+
+    Para acessar a Query (valor do restaurante) é preciso digitar no endpoint do navegador:
+    ?restaurante=NomeDoRestaurante
+    '''
