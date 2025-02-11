@@ -2,9 +2,8 @@ from abc import ABC, abstractmethod
 
 class Conta(ABC):
     
-    def __init__(self, saldo, limite, agencia, numero):
+    def __init__(self, saldo: float, agencia: int, numero: int):
         self.saldo = saldo
-        self.limite = limite
         self.agencia = agencia
         self.numero = numero
 
@@ -12,37 +11,55 @@ class Conta(ABC):
     def sacar(self):
         pass
 
-    def deposito(self, valor):
+    def deposito(self, valor) -> float:
         self.saldo += valor
-        return f'Depósito de {valor} realizado. Seu saldo atual é de R$ {self.saldo}'
+        print(f'Depósito de {valor} realizado. Seu saldo atual é de R$ {self.saldo}!')
+        return self.saldo
 
 
 class ContaCorrente(Conta):
 
-    def sacar(self, saque, valor):
+    def __init__(self, saldo, agencia, numero, limite=1000):
+        super().__init__(saldo, agencia, numero)
+        self.limite = limite
+    
+    def dados_conta(self):
+        print(f'Conta Corrente, n. {self.numero}, ag. {self.agencia}')
+        print(f'Saldo correntista: {self.saldo}')
+
+    def sacar(self, saque, valor) -> float:
+        saldo = self.saldo - valor
+        limite_maximo = -self.limite
+
         if saque:
-            if valor > self.saldo:
-                print("O valor desejado excede o Saldo da Conta!")
+            if saldo >= limite_maximo:
+                self.saldo -= valor
+                print(f'Saque de {valor} realizado. Seu saldo atual é de R$ {self.saldo}!')
+                return self.saldo
             else:
-                self.saldo - valor
-                print(f'Saque de {valor} realizado. Seu saldo atual é de R$ {self.saldo}')
+                print("O valor desejado excede o Limite de Saque da Conta!")
         else:
             print('Você nao tem autorizacao para sacar!')
 
     
 class ContaPoupanca(Conta):
 
-    def sacar(self, valor):
-        if valor > self.saldo:
-            print("O valor desejado excede o Saldo da Conta")
+    def sacar(self, saque, valor) -> float:
+        saldo = self.saldo
+        if saque:
+            if valor > self.saldo:
+                print("O valor desejado excede o Saldo da Conta!")
+            else:
+                self.saldo = saldo - valor
+                print(f'Saque de {valor} realizado. Seu saldo atual é de R$ {self.saldo}!')
+                return self.saldo
         else:
-            self.saldo -= valor
-            return f'Saque de {valor} realizado. Seu saldo atual é de R$ {self.saldo}'
+            print('Você nao tem autorizacao para sacar!')
     
 
 class Pessoa:
 
-    def __init__(self, nome, idade):
+    def __init__(self, nome: str, idade: int):
         self.nome = nome
         self.idade = idade
 
@@ -96,10 +113,12 @@ class Banco:
 
 
 Cliente_1 = Cliente('Leonardo', 30)
-conta_corrente_1 = ContaCorrente(2000, 5000, 2905, 921938)
+conta_corrente_1 = ContaCorrente(2000, 2905, 921938)
 Cliente_1.definir_tipo_conta(conta_corrente_1)
 Banco_1 = Banco(2905, 921938)
 Banco_1.definir_contas(conta_corrente_1)
 Banco_1.definir_clientes(Cliente_1)
+conta_corrente_1.dados_conta()
 saque = Banco_1.autenticar(Cliente_1.nome)
-conta_corrente_1.sacar(saque, 1000)
+conta_corrente_1.sacar(saque, 3000)
+conta_corrente_1.deposito(1000)
