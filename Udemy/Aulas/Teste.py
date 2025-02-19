@@ -16,7 +16,7 @@ def formata_tamanho(tamanho: int, base: int = 1024) -> str:
     return f'{result} {index_value}'
 
 
-caminho = '/media/leosanders/Linux/Repositórios/Python/Udemy/Aulas'
+caminho = '/home/leosanders/Documents/Leo_Sanders'
 cont = count()
 
 for root, dirs, files in os.walk(caminho):
