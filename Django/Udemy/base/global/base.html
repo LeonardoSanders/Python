@@ -2,5 +2,12 @@
 {% include "global/partials/menu.html" %}
 
     <h1> {% block texto %}BASE{% endblock texto %} </h1>
+<main class="content">
+{% block posts %}
+    {% for post in posts %}
+        {% include "global/partials/postblock.html" %}
+    {% endfor %}
+{% endblock posts %}
+</main>
 </body>
 </html>
